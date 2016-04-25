@@ -1,17 +1,454 @@
 <div id="wrapper">
+	<header></header>
+	<div id="page-wrapper">
+		<div class="row table-heading">
+			<div class="col-xs-5">
+				<h1>User Overview</h1>
+			</div>
+			<div class="col-xs-2">
+				<div class="btn-group bootstrap-select pull-right">
+					<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="">
+						<span class="filter-option pull-left">Filter usergroup
+						</span>&nbsp;<span class="bs-caret">
+						<span class="caret">
+						</span></span>
+					</button>
+					<div class="dropdown-menu open">
+						<ul class="dropdown-menu inner" role="menu">
+							<li data-original-index="0" class="selected">
+								<a tabindex="0" class="" style="" data-tokens="null">
+									<span class="text">Replies</span>
+									<span class="glyphicon glyphicon-ok check-mark"></span>
+								</a>
+							</li>
+							<li data-original-index="1">
+								<a tabindex="0" class="" style="" data-tokens="null">
+									<span class="text">Topics</span>
+									<span class="glyphicon glyphicon-ok check-mark"></span>
+								</a>
+							</li>
+							<li data-original-index="2">
+								<a tabindex="0" class="" style="" data-tokens="null">
+									<span class="text">Solved</span>
+									<span class="glyphicon glyphicon-ok check-mark"></span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-2">
+				<div class="input-group custom-search-form">
+					<input type="text" class="form-control" placeholder="Search for user">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							<i class="fa fa-search fa-lg"></i>
+						</button>
+					</span>
+				</div>
+			</div>
+			<div class="col-xs-1">
+				<div class="form-group">
+					<button class="btn btn-default" type="button" ng-click="openPanel = !openPanel">
+						<i class="fa fa-sliders"></i>  Advanced filter
+					</button>
+				</div>
+			</div>
+			<div class="col-xs-1">
+				<div class="form-group">
+					<button class="btn btn-primary" type="button" >
+						Add user
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="row table-content">
+			<div class="row">
+				<div class="col-lg-12"  ng-show="openPanel">
+					<form name="Form">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								Advanced Filter
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-xs-2">
+										<div class="btn-group bootstrap-select">
+											<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="" ng-disabled="isDisabled">
+												<span class="filter-option pull-left">Choose a value
+												</span>&nbsp;<span class="bs-caret">
+												<span class="caret">
+												</span></span>
+											</button>
+											<div class="dropdown-menu open">
+												<ul class="dropdown-menu inner" role="menu">
+													<li data-original-index="0" class="selected">
+														<a tabindex="0" class="" style="" data-tokens="null" ng-click="selectComment = !selectComment; isDisabled = !isDisabled">
+															<span class="text">Replies</span>
+															<span class="glyphicon glyphicon-ok check-mark"></span>
+														</a>
+													</li>
+													<li data-original-index="1" ng-click="selectComment = !selectComment; isDisabled = !isDisabled">
+														<a tabindex="0" class="" style="" data-tokens="null">
+															<span class="text">Topics</span>
+															<span class="glyphicon glyphicon-ok check-mark"></span>
+														</a>
+													</li>
+													<li data-original-index="2" ng-click="selectComment = !selectComment; isDisabled = !isDisabled">
+														<a tabindex="0" class="" style="" data-tokens="null">
+															<span class="text">Solved</span>
+															<span class="glyphicon glyphicon-ok check-mark"></span>
+														</a>
+													</li>
+													<li data-original-index="3" ng-click="selectUsergroup = !selectUsergroup; isDisabled = !isDisabled">
+														<a tabindex="0" class="" style="" data-tokens="null">
+															<span class="text">Usergroup</span>
+															<span class="glyphicon glyphicon-ok check-mark"></span>
+														</a>
+													</li>
+													<li data-original-index="4" ng-click="selectDate = !selectDate; isDisabled = !isDisabled">
+														<a tabindex="0" class="" style="" data-tokens="null">
+															<span class="text">Registration date</span>
+															<span class="glyphicon glyphicon-ok check-mark"></span>
+														</a>
+													</li>
+													<li data-original-index="5" ng-click="selectDate = !selectDate; isDisabled = !isDisabled">
+														<a tabindex="0" class="" style="" data-tokens="null">
+															<span class="text">last login</span>
+															<span class="glyphicon glyphicon-ok check-mark"></span>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-2" ng-show="selectComment">
+										<div class="btn-group bootstrap-select">
+											<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="">
+												<span class="filter-option pull-left">Choose a value
+												</span>&nbsp;<span class="bs-caret">
+												<span class="caret">
+												</span></span>
+											</button>
+											<div class="dropdown-menu open">
+												<ul class="dropdown-menu inner" role="menu">
+													<li data-original-index="0" class="selected" ng-click="inputComment = !inputComment">
+														<a tabindex="0" class="" style="" data-tokens="null">
+															<span class="text">Is greater than</span>
+															<span class="glyphicon glyphicon-ok check-mark"></span>
+														</a>
+													</li>
+													<li data-original-index="1">
+														<a tabindex="0" class="" style="" data-tokens="null" ng-click="inputComment = !inputComment">
+															<span class="text">Is smaller than</span>
+															<span class="glyphicon glyphicon-ok check-mark"></span>
+														</a>
+													</li>
+													<li data-original-index="2">
+														<a tabindex="0" class="" style="" data-tokens="null" ng-click="inputComment = !inputComment">
+															<span class="text">Equals</span>
+															<span class="glyphicon glyphicon-ok check-mark"></span>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-2" ng-show="selectDate">
+										<div class="btn-group bootstrap-select">
+											<button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="">
+												<span class="filter-option pull-left">Choose a value
+												</span>&nbsp;<span class="bs-caret">
+												<span class="caret">
+												</span></span>
+											</button>
+											<div class="dropdown-menu open">
+												<ul class="dropdown-menu inner" role="menu">
+													<li data-original-index="0" class="selected" ng-click="inputDate = !inputDate">
+														<a tabindex="0" class="" style="" data-tokens="null">
+															<span class="text">Before</span>
+															<span class="glyphicon glyphicon-ok check-mark"></span>
+														</a>
+													</li>
+													<li data-original-index="1">
+														<a tabindex="0" class="" style="" data-tokens="null" ng-click="inputDate = !inputDate">
+															<span class="text">After</span>
+															<span class="glyphicon glyphicon-ok check-mark"></span>
+														</a>
+													</li>
+													<li data-original-index="2">
+														<a tabindex="0" class="" style="" data-tokens="null" ng-click="inputDate = !inputDate">
+															<span class="text">Exact date</span>
+															<span class="glyphicon glyphicon-ok check-mark"></span>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-2" ng-show="selectUsergroup">
+										<div ng-dropdown-multiselect="" options="filterUserGroupdata" selected-model="filterUserGroup" checkboxes="true" extra-settings="filterUserGroupsettings">
+										</div> 
+									</div>
+									<div class="col-xs-2" ng-show="inputComment" >
+										<div class="input-group ">
+											<input type="text" class="form-control" placeholder="" name="inputForm" >
+										</div>
+									</div>
+									<div class="col-xs-2" ng-show="inputDate" >
+										<p class="input-group">
+											<input type="text" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+											</span>
+										</p>
+									</div>
+									<div class="col-xs-2" ng-show="inputComment" ng-click="selectComment = !selectComment; inputComment = !inputComment; isDisabled = !isDisabled">
+										<div class="input-group ">
+											<button class="btn btn-danger" type="button"><i class="fa fa-times"></i>
+											</button>
+										</div>
+									</div>
+									<div class="col-xs-2" ng-show="selectUsergroup" ng-click="selectUsergroup = !selectUsergroup; isDisabled = !isDisabled">
+										<div class="input-group ">
+											<button class="btn btn-danger" type="button"><i class="fa fa-times"></i>
+											</button>
+										</div>
+									</div>
+									<div class="col-xs-1 addRow" >
+										<div class="form-group">
+											<div>
+												<button class="btn btn-primary" type="button" ng-disabled="Form.inputForm.$pristine">
+													Add Row
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="panel-footer">
+								<div class="row">
+									<div class="col-xs-1">
+										<div class="form-group">
+											<button class="btn btn-success" type="button" ng-disabled="Form.inputForm.$pristine">
+												Apply
+											</button>
+										</div>
+									</div>
+									<div class="col-xs-1">
+										<div class="form-group">
+											<button class="btn btn-default" type="button" ng-click="selectComment = !selectComment; inputComment = !inputComment; isDisabled = !isDisabled">
+												Clear filters
+											</button>
+										</div>
+									</div>
+									<div class="col-xs-1">
+										<div class="form-group">
+											<button class="btn btn-trans" type="button" ng-click="openPanel = !openPanel">
+												Close
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</form>
+					</div>
+				</div>
 
-        <!-- Navigation -->
-            
-        <header></header>
-        <!-- /.navbar-top-links -->
-        
-               
-        <!-- /.navbar-static-side -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="dataTable_wrapper">
+						<table datatable="" class="table table-striped table-bordered table-hover" id="dataTables-example">
+							<thead>
+								<tr>
+									<th><div class="checkbox pull-left">
+										<label>
+											<input type="checkbox" value="">
+										</label>
+									</div>Username</th>
+									<th>Email</th>
+									<th>Replies</th>
+									<th>Topic</th>
+									<th>Solved</th>
+									<th>Usergroup</th>
+									<th>Registration date</th>
+									<th>Last login</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="odd gradeX" ng-class="{'tr_selected': trSelect_1}">
+									<td><div class="checkbox pull-left tbcheck">
+										<label>
+											<input type="checkbox" value="" ng-model="trSelect_1">
+										</label>
+									</div><img src="../app/img/lucyBennett.jpg">Lucy Bennett<i class="fa fa-clone pull-right"></i>
+								</td>
+								<td>helmet.water@gmail.com</td>
+								<td>9815</td>
+								<td class="center">468</td>
+								<td class="center">33</td>
+								<td class="center">Colonel</td>
+								<td class="center">01 Mar 2016</td>
+								<td class="center">01 Mar 2016</td>
+							</tr>
+							<tr class="even gradeC" ng-class="{'tr_selected': trSelect_2}">
+								<td><div class="checkbox pull-left tbcheck">
+									<label>
+										<input type="checkbox" value="" ng-model="trSelect_2">
+									</label>
+									</div><img src="../app/img/lulaFuller.jpg">Lula Fuller<i class="fa fa-clone pull-right"></i>
+								</td>
+								<td>andy.luker@hotmail.com</td>
+								<td>8788</td>
+								<td class="center">455</td>
+								<td class="center">22</td>
+								<td class="center">Officer</td>
+								<td class="center">06 May 2016</td>
+								<td class="center">08 Jul 2016</td>
+							</tr>
+							<tr class="odd gradeA" ng-class="{'tr_selected': trSelect_3}">
+								<td><div class="checkbox pull-left tbcheck">
+									<label>
+										<input type="checkbox" value="" ng-model="trSelect_3">
+									</label>
+									</div><img src="../app/img/sallyWilliams.jpg">Sally Williams<i class="fa fa-clone pull-right"></i>
+								</td>
+								<td>lucas.herntar@hotmail.com</td>
+								<td>3745</td>
+								<td class="center">274</td>
+								<td class="center">44</td>
+								<td class="center">Captain</td>
+								<td class="center">06 Apr 2016</td>
+								<td class="center">08 Jul 2016</td>
+							</tr>
+							<tr class="even gradeA" ng-class="{'tr_selected': trSelect_4}">
+								<td><div class="checkbox pull-left tbcheck">
+									<label>
+										<input type="checkbox" value="" ng-model="trSelect_4">
+									</label>
+								</div><img src="../app/img/rogerOrtiz.jpg">Roger Ortiz<i class="fa fa-clone pull-right"></i>
+								</td>
+								<td>stephen_lesch@hotmail.com</td>
+								<td>2345</td>
+								<td class="center">124</td>
+								<td class="center">66</td>
+								<td class="center">Captain</td>
+								<td class="center">08 Apr 2016</td>
+								<td class="center">09 Oct 2016</td>
+							</tr>
+							<tr class="odd gradeB" ng-class="{'tr_selected': trSelect_6}">
+								<td><div class="checkbox pull-left tbcheck">
+									<label>
+										<input type="checkbox" value="" ng-model="trSelect_6">
+									</label>
+								</div><img src="../app/img/zacharyJensen.jpg">Zachary Jensen<i class="fa fa-clone pull-right"></i>
+								</td>
+								<td>dooley_leinani@hotmail.com</td>
+								<td>4567</td>
+								<td class="center">344</td>
+								<td class="center">56</td>
+								<td class="center">Lieutenant</td>
+								<td class="center">06 Apr 2016</td>
+								<td class="center">08 Jul 2016</td>
+							</tr>
+							<tr class="even gradeB" ng-class="{'tr_selected': trSelect_7}">
+								<td><div class="checkbox pull-left tbcheck">
+									<label>
+										<input type="checkbox" value="" ng-model="trSelect_7">
+									</label>
+									</div><img src="../app/img/janeMorris.jpg">Jane Morris<i class="fa fa-clone pull-right"></i>
+								</td>
+								<td>john.daugerthy@gyahoo.com</td>
+								<td>887</td>
+								<td class="center">344</td>
+								<td class="center">133</td>
+								<td class="center">Officer</td>
+								<td class="center">17 jun 2016</td>
+								<td class="center">08 Feb 2016</td>
+							</tr>
+							<tr class="even gradeH" ng-class="{'tr_selected': trSelect_8}">
+								<td><div class="checkbox pull-left tbcheck">
+									<label>
+										<input type="checkbox" value="" ng-model="trSelect_8">
+									</label>
+								</div><img src="../app/img/jesusCortez.jpg">Jesus Cortez<i class="fa fa-clone pull-right"></i>
+								</td>
+								<td>jesus_cortez@yahoo.com</td>
+								<td>2887</td>
+								<td class="center">144</td>
+								<td class="center">233</td>
+								<td class="center">Lieutenant</td>
+								<td class="center">17 May 2016</td>
+								<td class="center">12 Sep 2016</td>
+							</tr>
+							<tr class="even gradeH" ng-class="{'tr_selected': trSelect_9}">
+								<td><div class="checkbox pull-left tbcheck">
+									<label>
+										<input type="checkbox" value="" ng-model="trSelect_9">
+									</label>
+								</div><img src="../app/img/rodneyGray.jpg">Rodney Gray<i class="fa fa-clone pull-right"></i>
+								</td>
+								<td>rodney.gray@hotmail.com</td>
+								<td>4555</td>
+								<td class="center">774</td>
+								<td class="center">453</td>
+								<td class="center">Captain</td>
+								<td class="center">12 Feb 2016</td>
+								<td class="center">12 May 2016</td>
+							</tr>
+							<tr class="even gradeJ" ng-class="{'tr_selected': trSelect_10}">
+								<td><div class="checkbox pull-left tbcheck">
+									<label>
+										<input type="checkbox" value="" ng-model="trSelect_10">
+									</label>
+								</div><img src="../app/img/normanKlein.jpg">Norman Klein<i class="fa fa-clone pull-right"></i>
+								</td>
+								<td>norman_Klein@gyahoo.com</td>
+								<td>3887</td>
+								<td class="center">144</td>
+								<td class="center">1483</td>
+								<td class="center">General</td>
+								<td class="center">07 Feb 2016</td>
+								<td class="center">08 Dec 2016</td>
+							</tr>
+							<tr class="even gradeJ" ng-class="{'tr_selected': trSelect_11}">
+								<td><div class="checkbox pull-left tbcheck">
+									<label>
+										<input type="checkbox" value="" ng-model="trSelect_11">
+									</label>
+								</div><img src="../app/img/mitchellBarton.jpg">Mitchell Barton<i class="fa fa-clone pull-right"></i>
+								</td>
+								<td>mitchell.barton@gmail.com</td>
+								<td>3421</td>
+								<td class="center">124</td>
+								<td class="center">33</td>
+								<td class="center">Officer</td>
+								<td class="center">12 Apr 2016</td>
+								<td class="center">23 Feb 2016</td>
+							</tr>
+							<tr class="even gradeA" ng-class="{'tr_selected': trSelect_12}">
+								<td><div class="checkbox pull-left tbcheck">
+									<label>
+										<input type="checkbox" value="" ng-model="trSelect_12">
+									</label>
+									</div><img src="../app/img/lilyFerguson.jpg">Lily Ferguson<i class="fa fa-clone pull-right"></i>
+								</td>
+								<td>lily_Fergy@yahoo.com</td>
+								<td>7423</td>
+								<td class="center">7211</td>
+								<td class="center">123</td>
+								<td class="center">Officer</td>
+								<td class="center">12 Jan 2016</td>
+								<td class="center">22 Feb 2016</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>
 
-            <div id="page-wrapper" style="min-height: 561px;">
 
-                <div ui-view></div>
-                
-            </div>
-            <!-- /#page-wrapper -->
-    </div>
